@@ -1,3 +1,5 @@
+(in-package #:sugar-loop)
+
 (defmacro range (end)
   "Returns a list of numbers from 0 to end (exclusive)."
   (let ((gs (gensym)))
