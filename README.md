@@ -1,3 +1,3 @@
 # sugar-loop
 
-LOOP macros that do almost the same thing with their counterparts in Clojure.
+LOOP macros that will do almost the same thing with their counterparts in Clojure.
