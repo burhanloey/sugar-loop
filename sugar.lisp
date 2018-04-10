@@ -9,10 +9,6 @@
   "Returns a list of results when calling function f for n number of times."
   `(loop repeat ,n collect (funcall ,f)))
 
-(defun contains-nil-p (coll)
-  "Check if a list contains NIL."
-  (position nil coll))
-
 (defmacro partition (n coll &key (step n) include-all)
   "Returns a list of lists of n items each."
   (let ((gs (gensym))
