@@ -5,4 +5,5 @@
   (:use :cl)
   (:export #:range
            #:repeatedly
+           #:iterate
            #:partition))
