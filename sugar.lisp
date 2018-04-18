@@ -1,13 +1,20 @@
 (in-package #:sugar-loop)
 
-(defmacro range (end)
+(defun range (end)
   "Returns a list of numbers from 0 to end (exclusive)."
-  (let ((gs (gensym)))
-    `(loop for ,gs below ,end collect ,gs)))
+  (loop for i below end collect i))
 
-(defmacro repeatedly (n f)
+(defun repeatedly (n f)
   "Returns a list of results when calling function f for n number of times."
-  `(loop repeat ,n collect (funcall ,f)))
+  (loop repeat n collect (funcall f)))
+
+(defun iterate (n f x)
+  "Returns a list of x, (f x), (f (f x)) etc."
+  (let ((r x))
+    (loop repeat (1- n)
+          do (setf r (funcall f r))
+          collect r into results
+          finally (return (cons x results)))))
 
 (defmacro partition (n coll &key (step n) include-all)
   "Returns a list of lists of n items each."
