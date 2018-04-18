@@ -10,11 +10,10 @@
 
 (defun iterate (n f x)
   "Returns a list of x, (f x), (f (f x)) etc."
-  (let ((r x))
-    (loop repeat n
-          collect r into results
-          do (setf r (funcall f r))
-          finally (return results))))
+  (loop repeat n
+        for y = x then r
+        for r = x then (funcall f y)
+        collect r))
 
 (defmacro partition (n coll &key (step n) include-all)
   "Returns a list of lists of n items each."
