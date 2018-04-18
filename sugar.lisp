@@ -8,12 +8,16 @@
   "Returns a list of results when calling function f for n number of times."
   (loop repeat n collect (funcall f)))
 
-(defun iterate (n f x)
+(defun iterate (n f x &key into-list)
   "Returns a list of x, (f x), (f (f x)) etc."
   (loop repeat n
         for y = x then r
         for r = x then (funcall f y)
-        collect r))
+        when into-list
+          collect r into results
+        finally (if into-list
+                    (return results)
+                    (return r))))
 
 (defmacro partition (n coll &key (step n) include-all)
   "Returns a list of lists of n items each."

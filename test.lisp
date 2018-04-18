@@ -26,9 +26,14 @@
          (is (partition 2 '() :include-all t) '()))
 
 (subtest "Testing ITERATE"
-         (is (iterate 0 #'1+ 0) '())
-         (is (iterate 1 #'1+ 0) '(0))
-         (is (iterate 2 #'1+ 0) '(0 1))
-         (is (iterate 5 #'1+ 0) '(0 1 2 3 4)))
+         (is (iterate 0 #'1+ 0) nil)
+         (is (iterate 1 #'1+ 0) 0)
+         (is (iterate 2 #'1+ 0) 1)
+         (is (iterate 5 #'1+ 0) 4)
+
+         (is (iterate 0 #'1+ 0 :into-list t) '())
+         (is (iterate 1 #'1+ 0 :into-list t) '(0))
+         (is (iterate 2 #'1+ 0 :into-list t) '(0 1))
+         (is (iterate 5 #'1+ 0 :into-list t) '(0 1 2 3 4)))
 
 (finalize)
